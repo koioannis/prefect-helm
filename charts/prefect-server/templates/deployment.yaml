@@ -52,6 +52,10 @@ spec:
       {{- if .Values.server.priorityClassName }}
       priorityClassName: {{ .Values.server.priorityClassName }}
       {{- end }}
+      {{- if (.Values.server.initContainers) }}
+      initContainers:
+        {{- include "common.tplvalues.render" (dict "value" .Values.server.initContainers "context" $) | nindent 8 }}
+      {{- end }}
       containers:
         - name: prefect-server
           image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.prefectTag }}"

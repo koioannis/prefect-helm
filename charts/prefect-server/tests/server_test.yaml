@@ -4,6 +4,29 @@ release:
   namespace: prefect
 
 tests:
+  - it: Should set init containers correctly
+    set:
+      server:
+        initContainers:
+          - name:  init-container1
+            image: repo/prefect:v1.0.0
+            command: ["sh", "-c", "echo Init task 1"]
+          - name:  init-container2
+            image: repo/prefect:v1.0.0
+            command: ["sh", "-c", "echo Init task 2"]
+    asserts:
+      - template: deployment.yaml
+        equal:
+          path: .spec.template.spec.initContainers
+          value:
+            - name:  init-container1
+              image: repo/prefect:v1.0.0
+              command: ["sh", "-c", "echo Init task 1"]
+            - name:  init-container2
+              image: repo/prefect:v1.0.0
+              command: ["sh", "-c", "echo Init task 2"]
+
+
   - it: Should set the correct image and tag
     asserts:
       - template: deployment.yaml

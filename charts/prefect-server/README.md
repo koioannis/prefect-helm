@@ -208,6 +208,7 @@ the HorizontalPodAutoscaler.
 | server.image.pullPolicy | string | `"IfNotPresent"` | server image pull policy |
 | server.image.pullSecrets | list | `[]` | server image pull secrets |
 | server.image.repository | string | `"prefecthq/prefect"` | server image repository |
+| server.initContainers | list | `[]` | optional init containers that run before the main server container |
 | server.livenessProbe.config.failureThreshold | int | `3` | The number of consecutive failures allowed before considering the probe as failed. |
 | server.livenessProbe.config.initialDelaySeconds | int | `10` | The number of seconds to wait before starting the first probe. |
 | server.livenessProbe.config.periodSeconds | int | `10` | The number of seconds to wait between consecutive probes. |

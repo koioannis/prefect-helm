@@ -12,6 +12,14 @@ commonAnnotations: {}
 
 ## Deployment Configuration
 server:
+  # Example:
+  # initContainers:
+  #   - name: example-init
+  #     image: busybox
+  #     command: ["sh", "-c", "echo Init task"]
+  # -- optional init containers that run before the main server container
+  initContainers: []
+
   image:
     # -- server image repository
     repository: prefecthq/prefect
